@@ -1,11 +1,4 @@
-const greetings = [
-	"Hello",
-	"Good Morning",
-	"Good Afternoon",
-	"Good Evening",
-	"Good Night",
-]
-
+const greeting = require('./lib/greeting')
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 
@@ -25,8 +18,7 @@ app.use(express.static(__dirname + '/public'))
 app.get('/', (req, res) => res.render('home'))
 
 app.get('/about', (req, res) => {
-	const randomGreeting = greetings[Math.floor(Math.random()*greetings.length)]
-	res.render('about', { greeting: randomGreeting })
+	res.render('about', { greeting: greeting.getGreeting() })
 })
 
 //custom 404 page
